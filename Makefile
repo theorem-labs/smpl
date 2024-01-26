@@ -9,7 +9,7 @@ all: $(COQMAKEFILE)
 
 clean:
 	-$(MAKE) -f $(COQMAKEFILE) clean
-	rm -f $(COQMAKEFILE)
+	rm -f $(COQMAKEFILE)*
 
 $(COQMAKEFILE): Makefile _CoqProject
 	$(COQBIN)coq_makefile -f _CoqProject -o Makefile.coq
