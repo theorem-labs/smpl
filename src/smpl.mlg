@@ -17,7 +17,7 @@ open Extraargs
 open Pp
 open Tacarg
 open Ltac_plugin
-open Pcoq.Prim
+open Procq.Prim
 open Taccoerce
 
 module StringMap = Map.Make(String)
@@ -126,7 +126,7 @@ let smpl_create db_name db =
 let pr_progress b =
   str "(" ++ (if b then str "" else str "no") ++ str "progress)"
 
-let fresh_env () = 
+let fresh_env () =
   let env = Global.env () in
   let sigma = Evd.from_env env in
   env, sigma
@@ -143,7 +143,7 @@ let smpl_print_entry e =
 
 let smpl_db_exists db_name =
   try let db = StringMap.find db_name (!smpl_dbs) in db
-  with Not_found -> CErrors.user_err 
+  with Not_found -> CErrors.user_err
 				     (str "Unknown Smpl Database " ++ str db_name ++ str ".")
 
 let smpl_print db_name =
@@ -152,7 +152,7 @@ let smpl_print db_name =
 				   str " "  ++ pr_progress db.progress_default ++ str ".") in
       let _ = Feedback.msg_info (str "Tactics in priority order:") in
       List.iter (smpl_print_entry) db.queue; ()
-  with Not_found -> CErrors.user_err 
+  with Not_found -> CErrors.user_err
 				     (str "Unknown Smpl Database " ++ str db_name ++ str ".")
 
 let smpl_print_dbs () =
@@ -222,7 +222,7 @@ let pr_smpldb _prc _prlc _prt s = str s
 }
 
 ARGUMENT EXTEND smpldb
-  TYPED AS preident 
+  TYPED AS preident
   PRINTED BY { pr_smpldb }
 | [ preident(i) ] -> { let _ = smpl_db_exists i in i }
 END

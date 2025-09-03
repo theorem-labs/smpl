@@ -1,1 +1,1 @@
-Declare ML Module "smpl_plugin:smpl.smpl".
+Declare ML Module "smpl.smpl".

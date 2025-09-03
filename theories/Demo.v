@@ -19,12 +19,12 @@ Goal False.
   Fail smpl len.
 Abort.
 
-Require Import List.
+From Stdlib Require Import List.
 
 Ltac len_simpl_app :=
   match goal with
-  | [ |- context [ length (?L ++ ?L') ] ] => rewrite (@app_length _ L L')
-  | [ H : context [ length (?L ++ ?L') ] |- _ ] => rewrite (@app_length _ L L') in H
+  | [ |- context [ length (?L ++ ?L') ] ] => rewrite (@length_app _ L L')
+  | [ H : context [ length (?L ++ ?L') ] |- _ ] => rewrite (@length_app _ L L') in H
   end.
 
 (* This adds the tactic at priority 100. *)
@@ -37,8 +37,8 @@ Notation "f ⊝ L" := (List.map f L) (at level 50, L at level 50, left associati
 
 Ltac len_simpl_map :=
   match goal with
-  | [ |- context [ length (?f ⊝ ?L) ] ] => rewrite (@map_length _ _ f L)
-  | [ H : context [ length (?f ⊝ ?L) ] |- _ ] => rewrite (@map_length _ _ f L) in H
+  | [ |- context [ length (?f ⊝ ?L) ] ] => rewrite (@length_map _ _ f L)
+  | [ H : context [ length (?f ⊝ ?L) ] |- _ ] => rewrite (@length_map _ _ f L) in H
   end.
 
 Smpl Add 99 len_simpl_map : len.
