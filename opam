@@ -13,6 +13,7 @@ install: [make "install"]
 depends: [
   "ocaml"
   "rocq-core" { >= "9.0" | = "dev" }
+  "rocq-stdlib" { >= "9.0" | = "dev" }
 ]
 synopsis: "Smpl: An Extensible Tactic for Coq"
 description: """
